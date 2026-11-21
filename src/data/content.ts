@@ -124,6 +124,10 @@ export const projects = {
         'Analysed Norway’s OECD PIAAC survey in Python, using survey weights and multilevel models to compare groups defined by several traits at once.',
       result: 'Interactive charts and a report showing where skill gaps lie — and what they mean for the job market.',
       tags: ['Python', 'Multilevel models', 'MAIHDA', 'Plotly'],
+      link: {
+        label: 'Read the thesis',
+        href: 'https://nva.sikt.no/registration/019fdb85ebcf-356c2698-8206-4f3e-8e1a-27aacffba299',
+      },
     },
     {
       tag: 'Research audit',

@@ -846,6 +846,19 @@ html.menu-open {
   border-radius: 999px;
 }
 
+.modal-link {
+  align-self: flex-start;
+  font-size: 14px;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+
+@media (hover: hover) {
+  .modal-link:hover {
+    color: var(--accent);
+  }
+}
+
 /* ---------- Stack (cards-compact) ---------- */
 
 .stack-grid {

@@ -71,6 +71,11 @@ const sep = '  ·  ';
               <li>{t}</li>
             ))}
           </ul>
+          {p.link && (
+            <a class="modal-link" href={p.link.href} target="_blank" rel="noopener">
+              {p.link.label} ↗
+            </a>
+          )}
         </div>
       </dialog>
     ))
