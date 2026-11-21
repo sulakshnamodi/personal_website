@@ -1,5 +1,5 @@
 ---
-import { nav, site } from '../data/content';
+import { nav, site, hero } from '../data/content';
 ---
 
 <nav class="nav" aria-label="Main">
@@ -19,4 +19,73 @@ import { nav, site } from '../data/content';
       ))
     }
   </ul>
+  <button
+    type="button"
+    class="nav-toggle"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    aria-label="Open menu"
+    data-menu-toggle
+  >
+    <span class="nav-toggle-label" data-menu-label>Menu</span>
+    <span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span>
+  </button>
 </nav>
+
+<!-- Phone menu. Lives outside <nav> because the nav's backdrop-filter would trap a fixed overlay. -->
+<div class="mobile-menu" id="mobile-menu" data-menu inert>
+  <ul class="mobile-menu-links">
+    {
+      nav.map((item, i) => (
+        <li style={`--i:${i}`}>
+          {item.external ? (
+            <a href={item.href} target="_blank" rel="noopener">
+              {item.label}
+            </a>
+          ) : (
+            <a href={item.href}>{item.label}</a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mobile-menu-foot">
+    <span class="nowrap">{hero.eyebrow[0]}</span>&nbsp;&nbsp;· <span class="nowrap">{hero.eyebrow[1]}</span><br />
+    <span class="mobile-menu-place">{hero.facts[0]?.value}</span>
+  </p>
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  const label = document.querySelector<HTMLElement>('[data-menu-label]');
+  const phone = window.matchMedia('(max-width: 640px)');
+
+  if (toggle && menu && label) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      label.textContent = open ? 'Close' : 'Menu';
+      menu.classList.toggle('is-open', open);
+      menu.inert = !open;
+      document.documentElement.classList.toggle('menu-open', open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+
+    // Tapping a link closes the menu (the anchor jump still happens).
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Leaving phone width (rotation, resize) closes it.
+    phone.addEventListener('change', (e) => {
+      if (!e.matches) setOpen(false);
+    });
+  }
+</script>
