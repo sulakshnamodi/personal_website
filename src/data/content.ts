@@ -6,7 +6,7 @@ export const site = {
   shortName: 'Sulakshna Umrit',
   title: 'Sulakshna Umrit — Quantitative Researcher & Data Analyst',
   description:
-    'Sulakshna Devi Umrit is a quantitative researcher and data analyst in Oslo, studying how people learn through data — survey statistics, multilevel models, machine learning and agentic AI.',
+    'Sulakshna Devi Umrit is a quantitative researcher and data analyst in Oslo, building autonomous research for the social sciences — agentic AI, survey statistics, multilevel models and machine learning.',
   locale: 'en_GB',
   ogImage: '/og-image.png',
   ogImageAlt: 'Sulakshna Umrit — Quantitative Researcher & Data Analyst',
@@ -27,8 +27,8 @@ export const nav = [
 
 export const hero = {
   eyebrow: ['Quantitative Researcher', 'Data Analyst'],
-  title: 'Studying how people learn —',
-  titleAccent: 'through data.',
+  title: 'Building autonomous research —', // non-breaking space keeps the dash on the first line
+  titleAccent: 'for the social sciences.',
   primaryLink: { label: 'View work', href: '#work' },
   secondaryLink: { label: 'Get in touch', href: '#contact' },
   portrait: { src: '/images/portrait.jpg', alt: 'Portrait of Sulakshna Devi Umrit' },
