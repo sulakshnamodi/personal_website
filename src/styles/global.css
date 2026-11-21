@@ -365,7 +365,7 @@ html.menu-open {
 
 .hero-title {
   margin: 0;
-  max-width: 560px;
+  max-width: 720px;
   font-weight: 400;
   font-size: clamp(30px, 3.4vw, 44px);
   line-height: 1.15;
@@ -379,6 +379,15 @@ html.menu-open {
   font-weight: 300;
   font-size: 1.06em;
   color: var(--accent);
+  white-space: nowrap; /* keep the accent phrase on one line */
+  display: block; /* …and always on its own line */
+}
+
+/* Very narrow phones: shrink the headline just enough for the accent phrase to fit */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: min(30px, calc((100vw - 40px) / 9.6));
+  }
 }
 
 .hero-links {
@@ -415,8 +424,8 @@ html.menu-open {
 
 .hero-portrait-img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
   overflow: hidden;
 }
 
