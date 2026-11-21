@@ -26,7 +26,7 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: ['AI Engineer', 'Researcher'],
+  eyebrow: ['Data Analyst', 'Quantitative Researcher'],
   title: 'Building autonomous research —', // non-breaking space keeps the dash on the first line
   titleAccent: 'for the social sciences.',
   primaryLink: { label: 'View work', href: '#work' },

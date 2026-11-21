@@ -83,8 +83,21 @@ a:hover {
   border: 0;
 }
 
-.nowrap {
+.nowrap,
+.eyebrow-part {
   white-space: nowrap;
+}
+
+/* Small phones: the two roles stack on their own lines, without the dot */
+@media (max-width: 480px) {
+  .hero-eyebrow .eyebrow-part,
+  .mobile-menu-foot .eyebrow-part {
+    display: block;
+  }
+
+  .eyebrow-sep {
+    display: none;
+  }
 }
 
 .skip-link {
@@ -201,7 +214,9 @@ a:hover {
 }
 
 .nav-brand {
+  font-size: 18px;
   font-weight: 500;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
@@ -335,8 +350,9 @@ html.menu-open {
 
 .hero-eyebrow {
   margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: clamp(13px, 1vw, 14px);
+  line-height: 1.7;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--faint);
 }
@@ -1157,7 +1173,7 @@ html.menu-open {
   }
 
   .nav-brand {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .nav-links {
