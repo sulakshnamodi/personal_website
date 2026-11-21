@@ -41,7 +41,7 @@ Other commands:
 - **Colours, fonts, spacing:** `src/styles/global.css` (theme tokens at the top)
 - **Social preview image:** `public/og-image.png` (1200×630)
 
-Still to do (from the design handoff): real LinkedIn and GitHub URLs, confirm the "Off duty" line, add photos and logos.
+Still to do (from the design handoff): real LinkedIn URL, confirm the "Off duty" line, add photos and logos.
 
 ## Project structure
 

@@ -181,10 +181,10 @@ export const footer = {
     { label: 'Stack', href: '#stack' },
     { label: 'Contact', href: '#contact' },
   ],
-  // TODO: replace with real LinkedIn and GitHub profile URLs.
+  // TODO: replace with the real LinkedIn profile URL.
   elsewhere: [
     { label: 'LinkedIn ↗', href: 'https://www.linkedin.com/' },
-    { label: 'GitHub ↗', href: 'https://github.com/' },
+    { label: 'GitHub ↗', href: 'https://github.com/sulakshnamodi' },
     { label: 'CV (PDF) ↗', href: site.cv.href },
   ],
   copyright: '© 2026 Sulakshna Devi Umrit',
