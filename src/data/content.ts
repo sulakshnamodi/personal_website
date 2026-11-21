@@ -14,6 +14,10 @@ export const site = {
     href: '/cv/Sulakshna_Umrit_CV_Data_AI.pdf',
     label: 'CV',
   },
+  profiles: {
+    linkedin: 'https://www.linkedin.com/in/sulakshna-umrit-127314253',
+    github: 'https://github.com/sulakshnamodi',
+  },
 };
 
 export const nav = [
@@ -185,10 +189,9 @@ export const footer = {
     { label: 'Stack', href: '#stack' },
     { label: 'Contact', href: '#contact' },
   ],
-  // TODO: replace with the real LinkedIn profile URL.
   elsewhere: [
-    { label: 'LinkedIn ↗', href: 'https://www.linkedin.com/' },
-    { label: 'GitHub ↗', href: 'https://github.com/sulakshnamodi' },
+    { label: 'LinkedIn ↗', href: site.profiles.linkedin },
+    { label: 'GitHub ↗', href: site.profiles.github },
     { label: 'CV (PDF) ↗', href: site.cv.href },
   ],
   copyright: '© 2026 Sulakshna Devi Umrit',

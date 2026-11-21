@@ -52,6 +52,7 @@ const ogImage = new URL(site.ogImage, Astro.site).href;
         jobTitle: 'Quantitative Researcher & Data Analyst',
         address: { '@type': 'PostalAddress', addressLocality: 'Oslo', addressCountry: 'NO' },
         url: Astro.site?.href,
+        sameAs: [site.profiles.linkedin, site.profiles.github],
       })}
     />
   </head>
