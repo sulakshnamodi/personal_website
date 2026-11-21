@@ -1,7 +1,7 @@
 ---
 // Renders an image from /public, or a neutral placeholder if the file doesn't exist yet.
-import fs from 'node:fs';
-import path from 'node:path';
+// __PUBLIC_FILES__ is the list of files in /public, collected in astro.config.mjs.
+declare const __PUBLIC_FILES__: string[];
 
 interface Props {
   src: string;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { src, alt, label = alt, loading = 'lazy', width, height } = Astro.props;
-const exists = fs.existsSync(path.join(process.cwd(), 'public', src));
+const exists = __PUBLIC_FILES__.includes(src);
 ---
 
 {
