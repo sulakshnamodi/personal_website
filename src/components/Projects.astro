@@ -1,0 +1,105 @@
+---
+import { projects } from '../data/content';
+
+const items = projects.items.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, '0'), id: `project-${i + 1}` }));
+const sep = '  ·  ';
+---
+
+<section id="projects" class="section" aria-labelledby="projects-title">
+  <div class="section-head" data-fade>
+    <h2 id="projects-title" class="section-title">{projects.title}</h2>
+  </div>
+  <div class="proj-grid">
+    {
+      items.map((p) => (
+        <article class="tile proj-card" data-fade data-open={p.id}>
+          <div class="proj-meta" aria-hidden="true">
+            <span>
+              {p.num}
+              {sep}
+              {p.tag}
+            </span>
+            <span>↗</span>
+          </div>
+          <h3 class="proj-title">
+            <button type="button" class="proj-open" aria-haspopup="dialog" data-open={p.id}>
+              {p.title}
+            </button>
+          </h3>
+          <p class="proj-line">{p.line}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  {
+    items.map((p) => (
+      <dialog class="modal" id={p.id} aria-labelledby={`${p.id}-title`}>
+        <div class="modal-inner">
+          <button type="button" class="modal-close" aria-label="Close" data-close>
+            ×
+          </button>
+          <div class="modal-head">
+            <span class="modal-meta">
+              {p.num}
+              {sep}
+              {p.tag}
+              {sep}
+              {p.when}
+            </span>
+            <h3 class="modal-title" id={`${p.id}-title`}>
+              {p.title}
+            </h3>
+            <p class="modal-line">{p.line}</p>
+          </div>
+          <dl class="modal-steps">
+            <div class="modal-step">
+              <dt>Problem</dt>
+              <dd>{p.problem}</dd>
+            </div>
+            <div class="modal-step">
+              <dt>Approach</dt>
+              <dd>{p.approach}</dd>
+            </div>
+            <div class="modal-step">
+              <dt>Result</dt>
+              <dd>{p.result}</dd>
+            </div>
+          </dl>
+          <ul class="modal-tags" aria-label="Tools">
+            {p.tags.map((t) => (
+              <li>{t}</li>
+            ))}
+          </ul>
+        </div>
+      </dialog>
+    ))
+  }
+</section>
+
+<script>
+  const root = document.documentElement;
+
+  const open = (id: string) => {
+    const dialog = document.getElementById(id);
+    if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
+    dialog.showModal();
+    root.style.overflow = 'hidden';
+  };
+
+  // Whole card is clickable; the inner <button> keeps it keyboard accessible.
+  document.querySelectorAll<HTMLElement>('.proj-card').forEach((card) => {
+    card.addEventListener('click', () => open(card.dataset.open!));
+  });
+
+  document.querySelectorAll<HTMLDialogElement>('dialog.modal').forEach((dialog) => {
+    dialog.addEventListener('close', () => {
+      root.style.overflow = '';
+    });
+    // Clicking the backdrop (the <dialog> itself, outside .modal-inner) closes it.
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+  });
+</script>

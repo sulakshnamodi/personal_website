@@ -1,0 +1,35 @@
+---
+import { about } from '../data/content';
+import Media from './Media.astro';
+---
+
+<section id="about" class="section" aria-labelledby="about-title">
+  <h2 id="about-title" class="section-title about-title" data-fade>{about.title}</h2>
+  <div class="about-grid">
+    <div class="collage" data-fade>
+      <div class="collage-item tall">
+        <Media src={about.photos.tall.src} alt={about.photos.tall.alt} label={about.photos.tall.label} />
+      </div>
+      <div class="collage-item square">
+        <Media src={about.photos.top.src} alt={about.photos.top.alt} label={about.photos.top.label} />
+      </div>
+      <div class="collage-item square">
+        <Media src={about.photos.bottom.src} alt={about.photos.bottom.alt} label={about.photos.bottom.label} />
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="about-lead" data-fade>{about.lead}</p>
+      <p class="about-body" data-fade>{about.body}</p>
+      <dl class="about-rows">
+        {
+          about.rows.map((row) => (
+            <div class="about-row" data-fade>
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import { stack } from '../data/content';
+
+const count = stack.groups.reduce((n, g) => n + g.items.length, 0);
+---
+
+<section id="stack" class="section" aria-labelledby="stack-title">
+  <div class="section-head" data-fade>
+    <h2 id="stack-title" class="section-title">{stack.title}</h2>
+    <span class="section-meta">{count} tools</span>
+  </div>
+  <div class="stack-grid">
+    {
+      stack.groups.map((g) => (
+        <div class="stack-card" data-fade>
+          <h3 class="stack-name">
+            <span class="stack-icon" aria-hidden="true">
+              {g.icon}
+            </span>
+            {g.name}
+          </h3>
+          <p class="stack-tools">{g.items.join('  ·  ')}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

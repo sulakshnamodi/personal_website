@@ -1,0 +1,22 @@
+---
+import { nav, site } from '../data/content';
+---
+
+<nav class="nav" aria-label="Main">
+  <a class="nav-brand" href="#top">{site.shortName}</a>
+  <ul class="nav-links">
+    {
+      nav.map((item) => (
+        <li>
+          {item.external ? (
+            <a href={item.href} target="_blank" rel="noopener">
+              {item.label}
+            </a>
+          ) : (
+            <a href={item.href}>{item.label}</a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

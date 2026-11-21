@@ -1,0 +1,66 @@
+---
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-serif-display/400.css';
+import '@fontsource/dm-serif-display/400-italic.css';
+import '@fontsource/sora/400.css';
+import '../styles/global.css';
+import { site } from '../data/content';
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(site.ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+    <meta name="author" content={site.name} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#fdfbf7" />
+    <meta name="color-scheme" content="light" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={site.title} />
+    <meta name="twitter:description" content={site.description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: site.name,
+        jobTitle: 'Quantitative Researcher & Data Analyst',
+        address: { '@type': 'PostalAddress', addressLocality: 'Oslo', addressCountry: 'NO' },
+        url: Astro.site?.href,
+      })}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+    <script>
+      import { initReveal } from '../scripts/reveal';
+      initReveal();
+    </script>
+  </body>
+</html>

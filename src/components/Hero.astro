@@ -1,0 +1,48 @@
+---
+import { hero } from '../data/content';
+import Media from './Media.astro';
+---
+
+<header id="top" class="hero">
+  <canvas class="hero-canvas" aria-hidden="true" data-hero-canvas></canvas>
+  <div class="hero-main">
+    <div class="hero-text">
+      <p class="hero-eyebrow" data-fade>
+        {hero.eyebrow[0]}&nbsp;&nbsp;·&nbsp;&nbsp;{hero.eyebrow[1]}
+      </p>
+      <div class="hero-copy">
+        <h1 class="hero-title" data-fade>
+          {hero.title} <em>{hero.titleAccent}</em>
+        </h1>
+        <div class="hero-links" data-fade>
+          <a class="primary" href={hero.primaryLink.href}>{hero.primaryLink.label}</a>
+          <a class="secondary" href={hero.secondaryLink.href}>{hero.secondaryLink.label}</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-portrait-wrap" data-fade>
+      <figure class="hero-portrait">
+        <div class="hero-portrait-img">
+          <Media src={hero.portrait.src} alt={hero.portrait.alt} label="Portrait" loading="eager" width={560} height={560} />
+        </div>
+        <figcaption>{hero.caption}</figcaption>
+      </figure>
+    </div>
+  </div>
+  <dl class="hero-facts" data-fade>
+    {
+      hero.facts.map((f) => (
+        <div>
+          <dt>{f.label}</dt>
+          <dd>{f.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</header>
+
+<script>
+  import { initHeroCanvas } from '../scripts/hero-canvas';
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+  if (canvas) initHeroCanvas(canvas);
+</script>

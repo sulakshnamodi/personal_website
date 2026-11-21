@@ -1,0 +1,31 @@
+---
+import { experience } from '../data/content';
+import Media from './Media.astro';
+---
+
+<section id="work" class="section" aria-labelledby="work-title">
+  <div class="section-head" data-fade>
+    <h2 id="work-title" class="section-title">{experience.title}</h2>
+    <span class="section-meta">{experience.meta}</span>
+  </div>
+  <div class="exp-grid">
+    {
+      experience.items.map((item) => (
+        <article class="tile exp-tile" data-fade>
+          <div class="exp-top">
+            <div class="exp-logo">
+              <Media src={item.logo} alt={`${item.org} logo`} label="Logo" width={144} height={144} />
+            </div>
+            <span class="exp-when">{item.when}</span>
+          </div>
+          <div class="exp-head">
+            <span class="exp-kind">{item.kind}</span>
+            <h3 class="exp-org">{item.org}</h3>
+            <span class="exp-role">{item.role}</span>
+          </div>
+          <p class="exp-detail">{item.detail}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

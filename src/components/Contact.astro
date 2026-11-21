@@ -1,0 +1,102 @@
+---
+import { contact, footer } from '../data/content';
+
+// Public Turnstile site key (safe to expose). Falls back to Cloudflare's "always passes" test key for local dev.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+---
+
+<footer id="contact" class="contact">
+  <div class="contact-grid">
+    <div class="contact-intro" data-fade>
+      <h2 class="contact-title">{contact.titleStart} <span>{contact.titleAccent}</span></h2>
+      <p class="contact-text">{contact.intro}</p>
+    </div>
+
+    <div>
+      <div class="contact-success" data-contact-success hidden aria-live="polite">
+        <span class="contact-success-title">{contact.successTitle}</span>
+        <span class="contact-success-body">{contact.successBody}</span>
+        <button type="button" class="link-button" data-contact-reset>{contact.sendAnother}</button>
+      </div>
+
+      <form
+        class="contact-form"
+        data-fade
+        data-contact-form
+        data-sitekey={turnstileSiteKey}
+        data-label-idle={contact.submit}
+        data-label-sending={contact.sending}
+        data-error-required={contact.errorRequired}
+        data-error-generic={contact.errorGeneric}
+        action="/api/contact"
+        method="post"
+        novalidate
+      >
+        <div class="form-row">
+          <label class="field">
+            <span class="field-label">{contact.fields.name.label}</span>
+            <input name="name" required autocomplete="name" maxlength="200" placeholder={contact.fields.name.placeholder} />
+          </label>
+          <label class="field">
+            <span class="field-label">{contact.fields.email.label}</span>
+            <input
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              maxlength="320"
+              placeholder={contact.fields.email.placeholder}
+            />
+          </label>
+        </div>
+        <label class="field">
+          <span class="field-label">{contact.fields.message.label}</span>
+          <textarea name="message" required rows="4" maxlength="5000" placeholder={contact.fields.message.placeholder}
+          ></textarea>
+        </label>
+        <div class="hp" aria-hidden="true">
+          <label>Company <input name="company" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <div class="turnstile-slot" data-turnstile></div>
+        <div class="form-actions">
+          <span class="form-error" data-form-error role="alert"></span>
+          <button type="submit" class="btn"><span data-submit-label>{contact.submit}</span> <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-id">
+        <span class="footer-name">{footer.name}</span>
+        <span class="footer-lines">
+          {footer.lines[0]}<br />{footer.lines[1]}
+        </span>
+      </div>
+      <nav class="footer-col" aria-label="Site">
+        <span class="footer-col-label">Site</span>
+        {footer.siteLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+      <div class="footer-col">
+        <span class="footer-col-label">Elsewhere</span>
+        {
+          footer.elsewhere.map((l) => (
+            <a href={l.href} target="_blank" rel="noopener">
+              {l.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>{footer.copyright}</span>
+      <a href="#top">{footer.backToTop}</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import { initContactForm } from '../scripts/contact-form';
+  initContactForm();
+</script>
